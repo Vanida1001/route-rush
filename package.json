@@ -1,0 +1,11 @@
+{
+  "name": "route-rush",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Route Rush - a daily delivery puzzle. No dependencies; `npm test` only runs node's built-in test runner.",
+  "scripts": {
+    "test": "node --test",
+    "start": "node serve.mjs"
+  }
+}

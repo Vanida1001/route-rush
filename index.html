@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Route Rush</title>
+  <meta name="description" content="Route Rush – a daily delivery puzzle. Deliver every parcel using as little fuel as possible.">
+  <meta name="theme-color" content="#d9382d">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="preload" href="fonts/Fredoka-700.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="hdr">
+      <button id="back" class="icon-btn" hidden></button>
+      <h1 id="title" class="logo" aria-label="Route Rush">
+        <svg class="logo-van" viewBox="0 0 100 100" aria-hidden="true">
+          <g stroke="#1d2b36" stroke-width="4" stroke-linejoin="round">
+            <rect x="8" y="30" width="58" height="38" rx="8" fill="#e8453c"/>
+            <path d="M66 42h12q9 0 12 9l3 17H66z" fill="#e8453c"/>
+            <path d="M71 47h7q6 0 8 6H71z" fill="#d8efff" stroke-width="3"/>
+            <rect x="14" y="44" width="46" height="7" rx="3.5" fill="#fff" stroke="none"/>
+            <circle cx="28" cy="70" r="10" fill="#2b2f36"/><circle cx="76" cy="70" r="10" fill="#2b2f36"/>
+          </g>
+          <circle cx="28" cy="70" r="4" fill="#cfd5dc"/><circle cx="76" cy="70" r="4" fill="#cfd5dc"/>
+        </svg>
+        <span class="w">Route</span><span class="w w2">Rush</span>
+      </h1>
+      <div id="lang" class="lang" role="group">
+        <button data-l="fr" aria-pressed="false">FR</button>
+        <button data-l="en" aria-pressed="false">EN</button>
+      </div>
+    </header>
+    <main id="screen" class="screen"></main>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <noscript>Route Rush needs JavaScript.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
