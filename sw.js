@@ -1,6 +1,6 @@
 // Service worker: caches the app shell on first visit so Route Rush works offline.
 // Bump CACHE when you change any file, so returning players get the update.
-const CACHE = 'route-rush-v8';
+const CACHE = 'route-rush-v9';
 const ASSETS = [
   './', 'index.html', 'manifest.json', 'icon.svg', 'css/style.css',
   'lang/en.json', 'lang/fr.json',

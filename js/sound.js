@@ -34,40 +34,14 @@ function tone(freq, start, dur, type = 'sine', vol = 0.12, slideTo) {
   o.stop(t0 + dur + 0.02);
 }
 
-/** A short band of filtered noise (engine puff, tyre scuff, click texture). */
-function noise(start, dur, freq, vol = 0.06, q = 1) {
-  const a = audio();
-  if (!a) return;
-  const len = Math.max(1, Math.floor(a.sampleRate * dur));
-  const buf = a.createBuffer(1, len, a.sampleRate);
-  const data = buf.getChannelData(0);
-  for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
-  const src = a.createBufferSource();
-  const f = a.createBiquadFilter();
-  const g = a.createGain();
-  const t0 = a.currentTime + start;
-  src.buffer = buf;
-  f.type = 'bandpass';
-  f.frequency.value = freq;
-  f.Q.value = q;
-  g.gain.setValueAtTime(vol, t0);
-  g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
-  src.connect(f).connect(g).connect(a.destination);
-  src.start(t0);
-}
-
-/** One little "putt-putt" engine chirp per tile, with a touch of tyre scuff; pitch varies a bit so steps don't sound identical. */
+/** Soft, round "brum" per tile: smooth low tones with a gentle rise, no noise, so it never sounds like static. */
 export const engine = () => {
-  const p = 0.94 + Math.random() * 0.12;
-  tone(95 * p, 0, 0.11, 'square', 0.035, 135 * p);
-  tone(190 * p, 0.04, 0.09, 'triangle', 0.05, 250 * p);
-  noise(0, 0.1, 900, 0.05, 0.8);
+  const p = 0.96 + Math.random() * 0.08;
+  tone(110 * p, 0, 0.16, 'sine', 0.10, 150 * p);
+  tone(220 * p, 0.01, 0.13, 'triangle', 0.035, 290 * p);
 };
 /** Soft pop when any button is pressed. */
-export const click = () => {
-  tone(700, 0, 0.06, 'triangle', 0.09, 420);
-  noise(0, 0.025, 2500, 0.04, 1.5);
-};
+export const click = () => tone(640, 0, 0.07, 'sine', 0.10, 420);
 /** Delivery "ding". */
 export const ding = () => {
   tone(880, 0, 0.18, 'sine', 0.14);
