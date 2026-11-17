@@ -2,6 +2,7 @@
 import { app, persist, applySettings } from './app.js';
 import { setLang, detectLang, t, getLang } from './i18n.js';
 import { iconSvg } from './ui/icons.js';
+import * as sound from './sound.js';
 import * as home from './ui/home.js';
 import * as howto from './ui/howto.js';
 import * as play from './ui/play.js';
@@ -63,6 +64,11 @@ async function boot() {
       route();
     }));
   window.addEventListener('hashchange', route);
+  // Every button press gets a soft click (only audible when sound is on in Settings).
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest?.('button, .node');
+    if (b && !b.disabled) sound.click();
+  });
 
   // First visit: open How to play automatically.
   if (!s.seenHowTo) {
